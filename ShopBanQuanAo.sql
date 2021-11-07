@@ -1,0 +1,269 @@
+
+CREATE DATABASE [ShopBanQuanAo]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'ShopBanQuanAo', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS06\MSSQL\DATA\ShopBanQuanAo.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'ShopBanQuanAo_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS06\MSSQL\DATA\ShopBanQuanAo_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [ShopBanQuanAo] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [ShopBanQuanAo].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [ShopBanQuanAo] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET  MULTI_USER 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [ShopBanQuanAo] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [ShopBanQuanAo] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [ShopBanQuanAo] SET QUERY_STORE = OFF
+GO
+USE [ShopBanQuanAo]
+GO
+/****** Object:  Table [dbo].[Brand]    Script Date: 7/29/2021 11:09:33 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Brand](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](100) NULL,
+	[Avatar] [nvarchar](100) NULL,
+	[Slug] [varchar](100) NULL,
+	[ShowOnHomePage] [bit] NULL,
+	[DisplayOrder] [int] NULL,
+	[CreatedOnUtc] [datetime] NULL,
+	[UpdatedOnUtc] [datetime] NULL,
+	[Deleted] [bit] NULL,
+ CONSTRAINT [PK_Brand] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Category]    Script Date: 7/29/2021 11:09:33 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](100) NULL,
+	[Avartar] [nchar](100) NULL,
+	[Slug] [varchar](100) NULL,
+	[ShowOnHomePage] [bit] NULL,
+	[DisplayOrder] [int] NULL,
+	[Deleted] [bit] NULL,
+	[CreatedOnUtc] [datetime] NULL,
+	[UpdatedOnUtc] [datetime] NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Email]    Script Date: 7/29/2021 11:09:33 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Email](
+	[Email_id] [int] IDENTITY(1,1) NOT NULL,
+	[EmailFrom] [nvarchar](50) NULL,
+	[EmailTo] [nvarchar](50) NULL,
+	[Body] [nvarchar](max) NULL,
+	[password] [varchar](50) NULL,
+	[Subject] [nvarchar](max) NULL,
+ CONSTRAINT [PK_Email] PRIMARY KEY CLUSTERED 
+(
+	[Email_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Order]    Script Date: 7/29/2021 11:09:33 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Order](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](100) NULL,
+	[UserId] [int] NULL,
+	[Status] [int] NULL,
+	[CreatedOnUtc] [datetime] NULL,
+ CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[OrderDetail]    Script Date: 7/29/2021 11:09:33 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderDetail](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderId] [int] NULL,
+	[ProductId] [int] NULL,
+	[Quantity] [int] NULL,
+ CONSTRAINT [PK_OrderDetail] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Product]    Script Date: 7/29/2021 11:09:33 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Product](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](100) NULL,
+	[Avartar] [nchar](100) NULL,
+	[CategoryId] [int] NULL,
+	[ShortDes] [nvarchar](100) NULL,
+	[FullDescription] [nvarchar](500) NULL,
+	[Price] [float] NULL,
+	[PriceDiscount] [float] NULL,
+	[TypeId] [int] NULL,
+	[Slug] [varchar](50) NULL,
+	[BrandId] [int] NULL,
+	[Deleted] [bit] NULL,
+	[ShowOnHomePage] [bit] NULL,
+	[DisplayOrder] [int] NULL,
+	[CreatedOnUtc] [datetime] NULL,
+	[UpdatedOnUtc] [datetime] NULL,
+	[Endow] [float] NULL,
+ CONSTRAINT [PK_Productt] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+drop table Product
+/****** Object:  Table [dbo].[Table]    Script Date: 7/29/2021 11:09:33 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Table](
+	[Id] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 7/29/2021 11:09:33 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[FirstName] [varchar](50) NULL,
+	[LastName] [varchar](50) NULL,
+	[Email] [varchar](50) NULL,
+	[Password] [varchar](50) NULL,
+	[IsAdmin] [bit] NULL,
+	[Date] [datetime] NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Brand] ON 
+GO
+SET IDENTITY_INSERT [dbo].[Brand] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Category] ON 
+GO
+SET IDENTITY_INSERT [dbo].[Category] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Email] ON 
+GO
+SET IDENTITY_INSERT [dbo].[Email] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Order] ON 
+GO
+SET IDENTITY_INSERT [dbo].[Order] OFF
+GO
+SET IDENTITY_INSERT [dbo].[OrderDetail] ON 
+GO
+SET IDENTITY_INSERT [dbo].[OrderDetail] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Product] ON 
+GO
+INSERT [dbo].[Product] ([Id], [Name], [Avartar], [CategoryId], [ShortDes], [FullDescription], [Price], [PriceDiscount], [TypeId], [Slug], [BrandId], [Deleted], [ShowOnHomePage], [DisplayOrder], [CreatedOnUtc], [UpdatedOnUtc], [Endow]) VALUES (2, N'Iphone 10 Pro Max', N'Iphone 10.jpg                                                                                       ', 1, N'Màn hình Retina, kích th?c 5,8-inch,m?t d? di?m ?nh 458ppi, thi?t b? b?ng thép', N'Mô t? d?y d?', 12500000, 12000000, 2, N'Iphone10', 1, 0, 1, 1, NULL, NULL, 20)
+
+SET IDENTITY_INSERT [dbo].[Product] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Users] ON 
+GO
+SET IDENTITY_INSERT [dbo].[Users] OFF
+GO
+USE [master]
+GO
+ALTER DATABASE [ShopBanQuanAo] SET  READ_WRITE 
+GO
